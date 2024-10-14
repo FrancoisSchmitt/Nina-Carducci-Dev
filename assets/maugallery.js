@@ -150,7 +150,7 @@
 
       $(imagesCollection).each(function(i) {
         if ($(activeImage).attr("src") === $(this).attr("src")) {
-          index = i ;
+          index = i-1 ;
         }
       });
       next =
@@ -189,7 +189,7 @@
 
       $(imagesCollection).each(function(i) {
         if ($(activeImage).attr("src") === $(this).attr("src")) {
-          index = i;
+          index = i+1;
         }
       });
       next = imagesCollection[index] || imagesCollection[0];
@@ -236,28 +236,22 @@
       }
     },
     filterByTag() {
-      if ($(this).hasClass("active-tag")) {
-        return;
-      }
-      $(".active-tag").removeClass("active active-tag");
-      $(this).addClass("active-tag");
+			if ($(this).hasClass("active-tag")) {
+				return;
+			}
+			$(".active-tag").removeClass("active active-tag");
+			$(this).addClass("active active-tag");
 
-      var tag = $(this).data("images-toggle");
+			let tag = $(this).data("images-toggle");
 
-      $(".gallery-item").each(function() {
-        $(this)
-          .parents(".item-column")
-          .hide();
-        if (tag === "all") {
-          $(this)
-            .parents(".item-column")
-            .show(300);
-        } else if ($(this).data("gallery-tag") === tag) {
-          $(this)
-            .parents(".item-column")
-            .show(300);
-        }
-      });
-    }
+			$(".gallery-item").each(function () {
+				$(this).parents(".item-column").hide();
+				if (tag === "all") {
+					$(this).parents(".item-column").show(300);
+				} else if ($(this).data("gallery-tag") === tag) {
+					$(this).parents(".item-column").show(300);
+				}
+			});
+		}
   };
 })(jQuery);
